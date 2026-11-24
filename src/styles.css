@@ -83,6 +83,8 @@ main { padding: 24px; }
 .hole-open { fill: var(--hole-open); }
 /* A trill: a squiggle above the holes, in the covered-hole color */
 .trill { fill: none; stroke: var(--hole-covered); stroke-width: 2; stroke-linecap: round; }
+.help { cursor: help; }
+.trill-hover { fill: transparent; }
 .hole-variable { fill: url(#half-hole); }
 .half-hole-dark { stop-color: var(--hole-covered); }
 .half-hole-light { stop-color: var(--hole-open); }
@@ -94,7 +96,10 @@ main { padding: 24px; }
   margin-right: 8px;
   border-radius: 5px;
   background: var(--flute-body);
+  position: relative;
 }
+/* See-through room above and below the thin bar, so it's easy to hover for its tooltip */
+.hold::before { content: ""; position: absolute; inset: -8px 0; }
 /* A note held across a bar line: the hold runs square-ended right up to the line on each side */
 .hold.tied-out { margin-right: -8px; border-top-right-radius: 0; border-bottom-right-radius: 0; }
 .hold.tied-in { margin-left: -8px; border-top-left-radius: 0; border-bottom-left-radius: 0; }

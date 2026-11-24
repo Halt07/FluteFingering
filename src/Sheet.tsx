@@ -40,7 +40,7 @@ function BeatSpan({ n, flute }: { n: BarNote; flute: string }) {
   const rest = n.note === "rest";
   // Carried over from the last bar: no second flute, just the hold continuing (or more rest)
   if (n.tiedIn) {
-    return rest ? null : <div className={`hold tied-in${n.tiedOut ? " tied-out" : ""}`} title={`${n.note}, still held`} />;
+    return rest ? null : <div className={`hold tied-in${n.tiedOut ? " tied-out" : ""} help`} title={`Keep holding ${n.note} from the last bar`} />;
   }
   return (
     <>
@@ -51,7 +51,7 @@ function BeatSpan({ n, flute }: { n: BarNote; flute: string }) {
         <FluteNote note={n.note} flute={flute} trill={n.trill} half={n.beats === 0.5 && !n.tiedOut} />
       )}
       {!rest && (n.beats > 1 || n.tiedOut) && (
-        <div className={`hold${n.tiedOut ? " tied-out" : ""}`} title={`${n.note}, held`} />
+        <div className={`hold${n.tiedOut ? " tied-out" : ""} help`} title={`Keep holding ${n.note} for the length of this bar`} />
       )}
     </>
   );
