@@ -1,6 +1,14 @@
+import type { FLAT_NAMES, SHARP_NAMES } from "./notes";
+
+type NoteName = (typeof SHARP_NAMES)[number] | (typeof FLAT_NAMES)[number];
+type Octave = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+/** A note name plus its octave ("A4", "Bb4", "C#5"), or "rest". */
+export type Note = `${NoteName}${Octave}` | "rest";
+
 /** One note of the tune: a note name ("A4", "Bb4", "C#5") or "rest", and how many beats it lasts. */
 export interface SongNote {
-  note: string;
+  note: Note;
   beats: number;
   trill?: boolean;
 }

@@ -1,5 +1,7 @@
 // Note names ("A4", "Bb4", "C#5") to pitch numbers, so a note can be compared with a flute's key.
 
+import type { Note } from "./types";
+
 const STEPS: Record<string, number> = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
 
 /**
@@ -20,16 +22,16 @@ export function semitonesAbove(note: string, key: string): number {
   return pitch(note) - pitch(key);
 }
 
-const SHARP_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-const FLAT_NAMES = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+export const SHARP_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"] as const;
+export const FLAT_NAMES = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"] as const;
 
 /** A pitch number back to a note name, spelled with sharps ("C#5") or flats ("Db5"). */
-export function noteName(p: number, flats = false): string {
+export function noteName(p: number, flats = false): Note {
   const names = flats ? FLAT_NAMES : SHARP_NAMES;
-  return `${names[((p % 12) + 12) % 12]}${Math.floor(p / 12) - 1}`;
+  return `${names[((p % 12) + 12) % 12]}${Math.floor(p / 12) - 1}` as Note;
 }
 
 /** `note` moved up (or down, if negative) by `semitones`. Keeps flats if it was written with them. */
-export function transposeNote(note: string, semitones: number): string {
+export function transposeNote(note: string, semitones: number): Note {
   return noteName(pitch(note) + semitones, note.includes("b"));
 }

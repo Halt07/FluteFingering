@@ -12,14 +12,14 @@ export interface BarNote extends SongNote {
   tiedOut: boolean;
 }
 
-/** The notes, `beatsPerBar` beats to every bar, with notes held across a bar line split there. */
+/** The notes (whole or half beats), `beatsPerBar` beats to every bar, with notes held across a bar line split there. */
 export function toBars(notes: readonly SongNote[], beatsPerBar: number): BarNote[][] {
   const bars: BarNote[][] = [];
   let bar: BarNote[] = [];
   let used = 0;
   for (const n of notes) {
-    if (!Number.isInteger(n.beats) || n.beats < 1) {
-      throw new Error(`"${n.note}" lasts ${n.beats} beats: use a whole number of beats, 1 or more`);
+    if (!Number.isInteger(n.beats * 2) || n.beats < 0.5) {
+      throw new Error(`"${n.note}" lasts ${n.beats} beats: use whole or half beats (0.5, 1, 1.5, 2, ...)`);
     }
     let left = n.beats;
     let tiedIn = false;

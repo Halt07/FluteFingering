@@ -38,7 +38,8 @@ export const FINGERINGS: Readonly<Record<number, Holes>> = {
   12: [O, X, O,  O, O, O], // octave
   13: [V, X, X,  X, X, X], // minor ninth
   14: [O, O, X,  X, X, X], // major ninth
-  15: [O, X, X,  X, O, O], // minor tenth
+  15: [O, O, X,  X, O, O], // minor tenth
+  16: [O, X, X,  X, O, O], // major tenth
 };
 
 /** The fingering for `note` on a flute in `key`, or null if that flute can't play it. */

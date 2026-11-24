@@ -20,7 +20,11 @@ export default function Sheet({ song, flute, title = song.title }: { song: Song;
         {toBars(song.notes, song.time).map((bar, b) => (
           <div className="bar" key={b}>
             {bar.map((n, i) => (
-              <div className="beat-span" key={i} style={{ width: `calc(var(--beat) * ${n.beats})` }}>
+              <div
+                className={`beat-span${n.tiedIn ? "" : " starts-note"}`}
+                key={i}
+                style={{ width: `calc(var(--beat) * ${n.beats})` }}
+              >
                 <BeatSpan n={n} flute={flute} />
               </div>
             ))}
@@ -40,7 +44,12 @@ function BeatSpan({ n, flute }: { n: BarNote; flute: string }) {
   }
   return (
     <>
-      {rest ? <div className="rest">rest</div> : <FluteNote note={n.note} flute={flute} trill={n.trill} />}
+      {rest ? (
+        <div className="rest">rest</div>
+      ) : (
+        // A half-beat note on its own, not the start of a longer note cut off by the bar line
+        <FluteNote note={n.note} flute={flute} trill={n.trill} half={n.beats === 0.5 && !n.tiedOut} />
+      )}
       {!rest && (n.beats > 1 || n.tiedOut) && (
         <div className={`hold${n.tiedOut ? " tied-out" : ""}`} title={`${n.note}, held`} />
       )}

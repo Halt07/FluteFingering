@@ -18,30 +18,40 @@ main { padding: 24px; }
 .sheet { margin-bottom: 40px; break-after: page; }
 .sheet h2 { margin: 0 0 16px; font-size: 1.3rem; }
 .flute-key { color: #777; font-weight: normal; }
-/* The song's title, which is also the list to pick another song from */
+/* The ♪ before the song's title: the song list sits invisibly over it, so clicking the ♪ opens it */
 .song-picker {
-  font: inherit;
-  color: inherit;
-  border: none;
+  position: relative;
+  display: inline-block;
+  margin-right: 6px;
+  padding: 0 4px;
   border-radius: 4px;
-  padding: 0 2px;
-  background: transparent;
+  color: #777;
   cursor: pointer;
 }
-.song-picker:hover { background: #eee; }
+.song-picker:hover, .song-picker:focus-within { background: #eee; color: inherit; }
+.song-picker select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
 
 /* Bars of 3 or 4 beats (set from the song's time), wrapping onto new lines, with a bar line after each */
 .bars { display: flex; flex-wrap: wrap; row-gap: 16px; }
 .bar {
   display: flex;
-  width: calc(var(--beat) * var(--bar-beats, 4));
+  /* At least its beats wide; a bar with half-beat notes grows to fit their flutes */
+  min-width: calc(var(--beat) * var(--bar-beats, 4));
   padding-right: 8px;
   margin-right: 8px;
   border-right: 2px solid #999;
 }
 
-/* One note: as wide as the beats it lasts */
-.beat-span { position: relative; display: flex; align-items: center; }
+/* One note: as wide as the beats it lasts, but never too narrow for its flute (a half-beat note gets a full beat's room) */
+.beat-span { position: relative; display: flex; align-items: center; flex-shrink: 0; }
+.beat-span.starts-note { min-width: var(--beat); }
 
 /* The gray block: white inside when the flute can play the note, empty when it can't */
 .note-block {
@@ -54,6 +64,8 @@ main { padding: 24px; }
   border-radius: 6px;
   background: var(--block);
 }
+/* A half-beat (eighth) note: the gray only fills the bottom half of the block */
+.note-block.half { background: linear-gradient(to top, var(--block) 50%, transparent 50%); }
 .note-card {
   height: 100%;
   box-sizing: border-box;
@@ -98,5 +110,5 @@ main { padding: 24px; }
 
 @media print {
   main { padding: 0; }
-  .song-picker { appearance: none; }
+  .song-picker { display: none; }
 }

@@ -4,7 +4,7 @@
 // - flutes: the keys of the flutes you'll play it on; you get one sheet for each. A flute's key is
 //           its lowest note, all holes covered (e.g. "A4", "F#4", "G4").
 // - notes:  the tune, in order. Each is a note name ("A4", "Bb4", "C#5") or "rest", and how many
-//           beats it lasts (whole beats). They're grouped into bars of `time` beats;
+//           beats it lasts (whole or half beats: 0.5, 1, 1.5, 2, ...). They're grouped into bars of `time` beats;
 //           a note held past the end of a bar carries over into the next, like a tie.
 // - time:   beats to a bar: 4 for 4/4 time, 3 for 3/4 (a waltz).
 // - transpose: move every note before charting (leave at 0 to play it as written). Either
@@ -56,9 +56,9 @@ export const song: Song = {
     { note: "D5", beats: 2 },
 
     { note: "F#5", beats: 1 },
-    { note: "E5", beats: 1 },
-    { note: "D5", beats: 1 },
-    { note: "E5", beats: 5 },
+    { note: "E5", beats: 0.5 },
+    { note: "D5", beats: 0.5 },
+    { note: "E5", beats: 6 },
 
 
     { note: "E5", beats: 2 },
@@ -76,8 +76,8 @@ export const song: Song = {
     { note: "F#5", beats: 2 },
     { note: "D6", beats: 3 },
 
-    { note: "B5", beats: 1 },
-    { note: "A5", beats: 1 },
+    { note: "B5", beats: 1.5 },
+    { note: "A5", beats: 0.5 },
     { note: "B5", beats: 5 },
 
     { note: "E6", beats: 2 },

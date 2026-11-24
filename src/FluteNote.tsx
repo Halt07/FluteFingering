@@ -3,15 +3,26 @@ import { fingeringFor, type Holes } from "./fingerings";
 /**
  * One note, as it's fingered on a flute in `flute` (its key): the note name above a drawing of the
  * flute, in a gray block. If that flute can't play the note, the block is left empty. A trill shows
- * as a squiggle on the flute above the holes.
+ * as a squiggle on the flute above the holes. A half-beat (eighth) note gets only half the gray block.
  */
-export default function FluteNote({ note, flute, trill = false }: { note: string; flute: string; trill?: boolean }) {
+export default function FluteNote({
+  note,
+  flute,
+  trill = false,
+  half = false,
+}: {
+  note: string;
+  flute: string;
+  trill?: boolean;
+  half?: boolean;
+}) {
   const holes = fingeringFor(note, flute);
+  const block = `note-block${half ? " half" : ""}`;
   if (!holes) {
-    return <div className="note-block" title={`${note} can't be played on the ${flute} flute`} />;
+    return <div className={block} title={`${note} can't be played on the ${flute} flute`} />;
   }
   return (
-    <div className="note-block">
+    <div className={block}>
       <div className="note-card">
         <div className="note-name">{note}</div>
         <FluteDrawing holes={holes} trill={trill} label={`${note}${trill ? " (trill)" : ""} on the ${flute} flute`} />

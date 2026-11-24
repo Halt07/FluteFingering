@@ -9,7 +9,7 @@ function songFromUrl(): string {
   return SONGS.some((s) => s.id === id) ? id! : SONGS[0].id;
 }
 
-/** One sheet for each flute listed in the chosen song. Click a song's title to pick another. */
+/** One sheet for each flute listed in the chosen song. Click the ♪ before a song's title to pick another. */
 export default function App() {
   const [id, setId] = useState(songFromUrl);
   const song = transposed(SONGS.find((s) => s.id === id)!.song);
@@ -22,15 +22,23 @@ export default function App() {
     window.history.replaceState(null, "", url);
   };
 
-  const picker = (
-    <select className="song-picker" value={id} onChange={(e) => choose(e.target.value)} aria-label="Song">
-      {SONGS.map((s) => <option key={s.id} value={s.id}>{s.song.title}</option>)}
-    </select>
+  // A ♪ before the title, with the song list laid invisibly over it: clicking the ♪ opens the list,
+  // and the title itself stays plain text, only as wide as it is
+  const title = (
+    <>
+      <span className="song-picker" title="Choose another song">
+        ♪♫▾
+        <select value={id} onChange={(e) => choose(e.target.value)} aria-label="Song">
+          {SONGS.map((s) => <option key={s.id} value={s.id}>{s.song.title}</option>)}
+        </select>
+      </span>
+      {song.title}
+    </>
   );
 
   return (
     <main>
-      {song.flutes.map((flute) => <Sheet key={flute} song={song} flute={flute} title={picker} />)}
+      {song.flutes.map((flute) => <Sheet key={flute} song={song} flute={flute} title={title} />)}
     </main>
   );
 }
