@@ -1,0 +1,85 @@
+:root {
+  /* The flute: holes covered are darker than the body, holes open lighter */
+  --hole-covered: #3d2817;
+  --flute-body: #a8794a;
+  --hole-open: #f4e6cf;
+  /* The gray block each note sits in */
+  --block: #d6d6d6;
+  /* How wide one beat is */
+  --beat: 84px;
+  font-family: system-ui, sans-serif;
+  color: #222;
+  background: #fff;
+}
+
+body { margin: 0; }
+main { padding: 24px; }
+
+.sheet { margin-bottom: 40px; break-after: page; }
+.sheet h2 { margin: 0 0 16px; font-size: 1.3rem; }
+.flute-key { color: #777; font-weight: normal; }
+
+/* Bars of 3 or 4 beats (set from the song's time), wrapping onto new lines, with a bar line after each */
+.bars { display: flex; flex-wrap: wrap; row-gap: 16px; }
+.bar {
+  display: flex;
+  width: calc(var(--beat) * var(--bar-beats, 4));
+  padding-right: 8px;
+  margin-right: 8px;
+  border-right: 2px solid #999;
+}
+
+/* One note: as wide as the beats it lasts */
+.beat-span { position: relative; display: flex; align-items: center; }
+
+/* The gray block: white inside when the flute can play the note, empty when it can't */
+.note-block {
+  flex-shrink: 0;
+  width: calc(var(--beat) - 8px);
+  height: 196px;
+  margin-right: 8px;
+  box-sizing: border-box;
+  padding: 6px;
+  border-radius: 6px;
+  background: var(--block);
+}
+.note-card {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 6px 4px;
+  border-radius: 4px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.note-name { font-weight: 600; margin-bottom: 4px; }
+.flute { height: 150px; }
+.flute-body { fill: var(--flute-body); }
+.hole-covered { fill: var(--hole-covered); }
+.hole-open { fill: var(--hole-open); }
+.hole-variable { fill: url(#half-hole); }
+.half-hole-dark { stop-color: var(--hole-covered); }
+.half-hole-light { stop-color: var(--hole-open); }
+
+/* A held note: a bar stretching from the block across the rest of its beats */
+.hold {
+  flex: 1;
+  height: 10px;
+  margin-right: 8px;
+  border-radius: 5px;
+  background: var(--flute-body);
+}
+
+/* A rest: an empty space the width of its beats */
+.rest {
+  width: calc(var(--beat) - 8px);
+  margin-right: 8px;
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+
+@media print {
+  main { padding: 0; }
+}
