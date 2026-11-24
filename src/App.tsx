@@ -1,5 +1,5 @@
 import Sheet from "./Sheet";
-import { song as written } from "./song";
+import { song as written } from "./songs/lugiasong"; // Change this to the song you want to display.
 import { transposed } from "./transpose";
 
 const song = transposed(written);

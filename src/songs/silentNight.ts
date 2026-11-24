@@ -4,7 +4,8 @@
 // - flutes: the keys of the flutes you'll play it on; you get one sheet for each. A flute's key is
 //           its lowest note, all holes covered (e.g. "A4", "F#4", "G4").
 // - notes:  the tune, in order. Each is a note name ("A4", "Bb4", "C#5") or "rest", and how many
-//           beats it lasts (whole beats). They're grouped into bars of `time` beats.
+//           beats it lasts (whole beats). They're grouped into bars of `time` beats;
+//           a note held past the end of a bar carries over into the next, like a tie.
 // - time:   beats to a bar: 4 for 4/4 time, 3 for 3/4 (a waltz).
 // - transpose: move every note before charting (leave at 0 to play it as written). Either
 //           - a number of semitones: 1 = up a half step, 2 = up a whole step, 12 = up an octave,
@@ -12,7 +13,7 @@
 //           - { from: "E4", to: "G4" }: a tune written for an E minor flute, moved so a G minor flute
 //             plays it with exactly the same fingerings (here, up 3).
 
-import type { Song } from "./types";
+import type { Song } from "../types";
 
 export const song: Song = {
   title: "Silent Night",

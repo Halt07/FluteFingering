@@ -2,9 +2,10 @@ import { fingeringFor, type Holes } from "./fingerings";
 
 /**
  * One note, as it's fingered on a flute in `flute` (its key): the note name above a drawing of the
- * flute, in a gray block. If that flute can't play the note, the block is left empty.
+ * flute, in a gray block. If that flute can't play the note, the block is left empty. A trill shows
+ * as a squiggle on the flute above the holes.
  */
-export default function FluteNote({ note, flute }: { note: string; flute: string }) {
+export default function FluteNote({ note, flute, trill = false }: { note: string; flute: string; trill?: boolean }) {
   const holes = fingeringFor(note, flute);
   if (!holes) {
     return <div className="note-block" title={`${note} can't be played on the ${flute} flute`} />;
@@ -13,7 +14,7 @@ export default function FluteNote({ note, flute }: { note: string; flute: string
     <div className="note-block">
       <div className="note-card">
         <div className="note-name">{note}</div>
-        <FluteDrawing holes={holes} label={`${note} on the ${flute} flute`} />
+        <FluteDrawing holes={holes} trill={trill} label={`${note}${trill ? " (trill)" : ""} on the ${flute} flute`} />
       </div>
     </div>
   );
@@ -22,7 +23,7 @@ export default function FluteNote({ note, flute }: { note: string; flute: string
 // The flute, top to bottom: a body rounded at the top, and six holes in two groups of three
 const HOLE_Y = [40, 56, 72, 96, 112, 128];
 
-function FluteDrawing({ holes, label }: { holes: Holes; label: string }) {
+function FluteDrawing({ holes, trill, label }: { holes: Holes; trill: boolean; label: string }) {
   const covered = holes.map((c, i) => `hole ${i + 1} ${c ? "covered" : c === null ? "half covered" : "open"}`).join(", ");
   return (
     <svg className="flute" viewBox="0 0 40 142" role="img" aria-label={`${label}: ${covered}`}>
@@ -34,6 +35,7 @@ function FluteDrawing({ holes, label }: { holes: Holes; label: string }) {
         </linearGradient>
       </defs>
       <path className="flute-body" d="M8,140 V18 A12,12 0 0 1 32,18 V140 Z" />
+      {trill && <path className="trill" d="M12,26 q2,-4 4,0 t4,0 t4,0 t4,0" />}
       {holes.map((isCovered, i) => (
         <circle key={i} cx={20} cy={HOLE_Y[i]} r={6} className={isCovered ? "hole-covered" : isCovered === null ? "hole-variable" : "hole-open"} />
       ))}

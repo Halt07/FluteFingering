@@ -2,6 +2,7 @@
 export interface SongNote {
   note: string;
   beats: number;
+  trill?: boolean;
 }
 
 export interface Song {

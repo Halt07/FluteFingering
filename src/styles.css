@@ -58,6 +58,8 @@ main { padding: 24px; }
 .flute-body { fill: var(--flute-body); }
 .hole-covered { fill: var(--hole-covered); }
 .hole-open { fill: var(--hole-open); }
+/* A trill: a squiggle above the holes, in the covered-hole color */
+.trill { fill: none; stroke: var(--hole-covered); stroke-width: 2; stroke-linecap: round; }
 .hole-variable { fill: url(#half-hole); }
 .half-hole-dark { stop-color: var(--hole-covered); }
 .half-hole-light { stop-color: var(--hole-open); }
@@ -70,6 +72,9 @@ main { padding: 24px; }
   border-radius: 5px;
   background: var(--flute-body);
 }
+/* A note held across a bar line: the hold runs square-ended right up to the line on each side */
+.hold.tied-out { margin-right: -8px; border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.hold.tied-in { margin-left: -8px; border-top-left-radius: 0; border-bottom-left-radius: 0; }
 
 /* A rest: an empty space the width of its beats */
 .rest {

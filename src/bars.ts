@@ -3,28 +3,37 @@
 import type { SongNote } from "./types";
 
 /**
- * The notes, `beatsPerBar` beats to a bar. A note that won't fit in what's left of a bar starts the next one
- * (so the bar before it ends short). A note longer than a whole bar gets a bar to itself.
+ * A note (or rest) as it sits in one bar. A note held past the end of a bar is split at the bar
+ * line, like a tie: the part in the first bar has `tiedOut`, and the part carried into the next
+ * bar has `tiedIn` (it's drawn as just the hold bar, not a second flute).
  */
-export function toBars(notes: readonly SongNote[], beatsPerBar: number): SongNote[][] {
-  const bars: SongNote[][] = [];
-  let bar: SongNote[] = [];
+export interface BarNote extends SongNote {
+  tiedIn: boolean;
+  tiedOut: boolean;
+}
+
+/** The notes, `beatsPerBar` beats to every bar, with notes held across a bar line split there. */
+export function toBars(notes: readonly SongNote[], beatsPerBar: number): BarNote[][] {
+  const bars: BarNote[][] = [];
+  let bar: BarNote[] = [];
   let used = 0;
   for (const n of notes) {
     if (!Number.isInteger(n.beats) || n.beats < 1) {
       throw new Error(`"${n.note}" lasts ${n.beats} beats: use a whole number of beats, 1 or more`);
     }
-    if (used > 0 && used + n.beats > beatsPerBar) {
-      bars.push(bar);
-      bar = [];
-      used = 0;
-    }
-    bar.push(n);
-    used += n.beats;
-    if (used >= beatsPerBar) {
-      bars.push(bar);
-      bar = [];
-      used = 0;
+    let left = n.beats;
+    let tiedIn = false;
+    while (left > 0) {
+      const beats = Math.min(left, beatsPerBar - used);
+      left -= beats;
+      bar.push({ ...n, beats, tiedIn, tiedOut: left > 0 });
+      tiedIn = true;
+      used += beats;
+      if (used === beatsPerBar) {
+        bars.push(bar);
+        bar = [];
+        used = 0;
+      }
     }
   }
   if (bar.length) bars.push(bar);
