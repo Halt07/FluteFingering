@@ -18,6 +18,17 @@ main { padding: 24px; }
 .sheet { margin-bottom: 40px; break-after: page; }
 .sheet h2 { margin: 0 0 16px; font-size: 1.3rem; }
 .flute-key { color: #777; font-weight: normal; }
+/* The song's title, which is also the list to pick another song from */
+.song-picker {
+  font: inherit;
+  color: inherit;
+  border: none;
+  border-radius: 4px;
+  padding: 0 2px;
+  background: transparent;
+  cursor: pointer;
+}
+.song-picker:hover { background: #eee; }
 
 /* Bars of 3 or 4 beats (set from the song's time), wrapping onto new lines, with a bar line after each */
 .bars { display: flex; flex-wrap: wrap; row-gap: 16px; }
@@ -87,4 +98,5 @@ main { padding: 24px; }
 
 @media print {
   main { padding: 0; }
+  .song-picker { appearance: none; }
 }

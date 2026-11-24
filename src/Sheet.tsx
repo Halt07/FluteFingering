@@ -1,6 +1,7 @@
 import { toBars, type BarNote } from "./bars";
 import FluteNote from "./FluteNote";
 import { transposeLabel } from "./transpose";
+import type { ReactNode } from "react";
 import type { Song } from "./types";
 
 /**
@@ -8,11 +9,11 @@ import type { Song } from "./types";
  * a beat is followed by a bar stretching across the beats it's held for, carried over the bar line
  * into the next bar if it's held that long.
  */
-export default function Sheet({ song, flute }: { song: Song; flute: string }) {
+export default function Sheet({ song, flute, title = song.title }: { song: Song; flute: string; title?: ReactNode }) {
   return (
     <section className="sheet">
       <h2>
-        {song.title} <span className="flute-key">· {flute} flute</span>
+        {title} <span className="flute-key">· {flute} flute</span>
         {transposeLabel(song) && <span className="flute-key"> · {transposeLabel(song)}</span>}
       </h2>
       <div className="bars" style={{ "--bar-beats": song.time } as React.CSSProperties}>

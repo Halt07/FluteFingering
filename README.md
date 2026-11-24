@@ -11,7 +11,9 @@ npm run dev     # open the printed URL; print from the browser for paper copies
 
 ## A new song
 
-Edit `src/song.ts`, then reload the page (or restart `npm run dev`):
+Songs live in `src/songs/`, one file each. To add one, copy an existing file and change it; it shows up
+in the list you get by clicking the song's title at the top of the page. Edits show up as soon as you save
+(or reload the page). A song file sets:
 
 - `title`: shown at the top of each sheet.
 - `flutes`: the keys of the flutes to make sheets for, such as `"A4"` or `"F#4"`. You get one sheet per flute.
