@@ -25,7 +25,7 @@ const O = false; // open
 export const FINGERINGS: Readonly<Record<number, Holes>> = {
   0:  [X, X, X,  X, X, X], // the key note (root)
   1:  [X, X, X,  X, X, V], // minor Second
-  2:  [X, X, X,  X, X, O], // major Second
+  2:  [X, X, X,  X, X, V], // major Second
   3:  [X, X, X,  X, X, O], // minor third
   4:  [X, X, X,  X, O, X], // major third
   5:  [X, X, X,  X, O, O], // fourth
