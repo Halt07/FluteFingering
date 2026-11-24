@@ -15,10 +15,10 @@
 import type { Song } from "./types";
 
 export const song: Song = {
-  title: "Example Tune",
-  flutes: ["G4","D4"],
+  title: "Silent Night",
+  flutes: ["A4","D4"],
   time: 3,
-  transpose: 3,
+  transpose: 5,
   notes: [
     { note: "G4", beats: 1 },
     { note: "A4", beats: 1 },
