@@ -1,0 +1,111 @@
+import type { Song } from "../../types";
+
+export const song: Song = {
+  title: "Saria's Song (Full)",
+  flutes: ["D4", "E4"],
+  time: 4,
+  transpose: 2,
+  notes: [
+    { note: "F4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "B4", beats: 1 },
+    { note: "F4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "B4", beats: 1 },
+
+    { note: "F4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "E5", beats: 0.5 },
+    { note: "D5", beats: 1 },
+    { note: "B4", beats: 0.5 },
+    { note: "C5", beats: 0.5 },
+
+    { note: "B4", beats: 0.5 },
+    { note: "G4", beats: 0.5 },
+    { note: "E4", beats: 2.5 },
+    { note: "D4", beats: 0.5 },
+
+    { note: "E4", beats: 0.5 },
+    { note: "G4", beats: 0.5 },
+    { note: "E4", beats: 3 },
+
+    { note: "F4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "B4", beats: 1 },
+    { note: "F4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "B4", beats: 1 },
+
+    { note: "F4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "E5", beats: 0.5 },
+    { note: "D5", beats: 1 },
+    { note: "B4", beats: 0.5 },
+    { note: "C5", beats: 0.5 },
+
+    { note: "E5", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "G4", beats: 2.5 },
+    { note: "B4", beats: 0.5 },
+
+    { note: "G4", beats: 0.5 },
+    { note: "D4", beats: 0.5 },
+    { note: "E4", beats: 3 },
+
+    { note: "D4", beats: 0.5 },
+    { note: "E4", beats: 0.5 },
+    { note: "F4", beats: 1 },
+    { note: "G4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "B4", beats: 1 },
+
+    { note: "C5", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "E4", beats: 3 },
+
+    { note: "D4", beats: 0.5 },
+    { note: "E4", beats: 0.5 },
+    { note: "F4", beats: 1 },
+    { note: "G4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "B4", beats: 1 },
+
+    { note: "C5", beats: 0.5 },
+    { note: "D5", beats: 0.5 },
+    { note: "E5", beats: 3 },
+
+    { note: "D4", beats: 0.5 },
+    { note: "E4", beats: 0.5 },
+    { note: "F4", beats: 1 },
+    { note: "G4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "B4", beats: 1 },
+
+    { note: "C5", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "E4", beats: 3 },
+
+    { note: "D4", beats: 0.5 },
+    { note: "C4", beats: 0.5 },
+    { note: "F4", beats: 0.5 },
+    { note: "D4", beats: 0.5 },
+    { note: "G4", beats: 0.5 },
+    { note: "F4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "G4", beats: 0.5 },
+
+    { note: "B4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "C5", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "D5", beats: 0.5 },
+    { note: "C5", beats: 0.5 },
+    { note: "E5", beats: 0.5 },
+    { note: "F5", beats: 0.5 },
+
+    { note: "D5", beats: 0.5 },
+    { note: "E5", beats: 3.5 },
+  ],
+};
