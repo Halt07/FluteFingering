@@ -48,7 +48,7 @@ function BeatSpan({ n, flute }: { n: BarNote; flute: string }) {
         <div className="rest">rest</div>
       ) : (
         // A half-beat note on its own, not the start of a longer note cut off by the bar line
-        <FluteNote note={n.note} flute={flute} trill={n.trill} half={n.beats === 0.5 && !n.tiedOut} />
+        <FluteNote note={n.note} alt={n.alt} flute={flute} trill={n.trill} half={n.beats === 0.5 && !n.tiedOut} />
       )}
       {!rest && (n.beats > 1 || n.tiedOut) && (
         <div className={`hold${n.tiedOut ? " tied-out" : ""} help`} title={`Keep holding ${n.note} for the length of this bar`} />

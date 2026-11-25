@@ -13,6 +13,8 @@ export interface SongNote {
   note: Note;
   beats: number;
   trill?: boolean;
+  /** A stand-in for a flute that can't reach `note`: that flute's sheet shows this instead, marked as a substitute. */
+  alt?: Note;
 }
 
 export interface Song {

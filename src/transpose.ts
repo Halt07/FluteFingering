@@ -15,7 +15,9 @@ export function transposed(song: Song): Song {
   if (by === 0) return song;
   return {
     ...song,
-    notes: song.notes.map((n) => (n.note === "rest" ? n : { ...n, note: transposeNote(n.note, by) })),
+    notes: song.notes.map((n) =>
+      n.note === "rest" ? n : { ...n, note: transposeNote(n.note, by), ...(n.alt && { alt: transposeNote(n.alt, by) }) },
+    ),
   };
 }
 

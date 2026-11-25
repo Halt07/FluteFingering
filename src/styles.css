@@ -112,6 +112,9 @@ main { padding: 24px; }
   align-items: center;
 }
 .note-name { font-weight: 600; margin-bottom: 4px; }
+/* A stand-in note, for a flute that can't reach the written one: ≈ before its name, a dashed outline */
+.note-card.substitute { outline: 2px dashed #999; outline-offset: -2px; cursor: help; }
+.note-card.substitute .note-name { font-style: italic; color: #555; }
 .flute { height: 150px; }
 .flute-body { fill: var(--flute-body); }
 .hole-covered { fill: var(--hole-covered); }

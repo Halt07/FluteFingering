@@ -6,6 +6,9 @@
 // - notes:  the tune, in order. Each is a note name ("A4", "Bb4", "C#5") or "rest", and how many
 //           beats it lasts (whole or half beats: 0.5, 1, 1.5, 2, ...). They're grouped into bars of `time` beats;
 //           a note held past the end of a bar carries over into the next, like a tie.
+// - alt:    optional, on a note: a stand-in for any flute that can't reach the note, e.g.
+//           { note: "E5", alt: "D#5", beats: 3 }. Flutes that can play E5 show E5; the others show
+//           D#5, marked with ≈ (it moves with `transpose` too).
 // - time:   beats to a bar: 4 for 4/4 time, 3 for 3/4 (a waltz), 6 for 6/8 (a lilt, counted in
 //           eighth notes: in 6/8 a note's beats are eighths, so a dotted quarter is 3).
 // - transpose: move every note before charting (leave at 0 to play it as written). Either
