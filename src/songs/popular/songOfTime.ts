@@ -18,7 +18,7 @@ export const song: Song = {
     { note: "C5", beats: 0.5 },
     { note: "B4", beats: 1 },
     { note: "G4", beats: 1 },
-    { note: "A4", beats: 0.5 },
+    { note: "F4", beats: 0.5 },
     { note: "G4", beats: 0.5 },
 
     { note: "A4", beats: 1 },
