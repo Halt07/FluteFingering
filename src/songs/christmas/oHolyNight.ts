@@ -4,7 +4,7 @@ export const song: Song = {
   title: "O Holy Night",
   flutes: ["D4", "E4"],
   time: 4,
-  transpose: 0,
+  transpose: 5,
   notes: [
     { note: "rest", beats: 2 },
     { note: "F#4", beats: 1 },
