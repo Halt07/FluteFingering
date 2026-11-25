@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Sheet from "./Sheet";
+import SongMenu from "./SongMenu";
 import { SONGS } from "./songs";
 import { transposed } from "./transpose";
 
@@ -22,16 +23,10 @@ export default function App() {
     window.history.replaceState(null, "", url);
   };
 
-  // A ♪ before the title, with the song list laid invisibly over it: clicking the ♪ opens the list,
-  // and the title itself stays plain text, only as wide as it is
+  // The ♪ menu before the title, which itself stays plain text, only as wide as it is
   const title = (
     <>
-      <span className="song-picker" title="Choose another song">
-        ♪♫▾
-        <select value={id} onChange={(e) => choose(e.target.value)} aria-label="Song">
-          {SONGS.map((s) => <option key={s.id} value={s.id}>{s.song.title}</option>)}
-        </select>
-      </span>
+      <SongMenu current={id} onChoose={choose} />
       {song.title}
     </>
   );

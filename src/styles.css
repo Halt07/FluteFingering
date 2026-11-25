@@ -5,8 +5,10 @@
   --hole-open: #f4e6cf;
   /* The gray block each note sits in */
   --block: #d6d6d6;
-  /* How wide one beat is */
-  --beat: 84px;
+  /* How wide a note's flute (and gray block) is, and one beat (a quarter note; in 6/8, an eighth).
+     A note is never narrower than its flute. */
+  --note: 84px;
+  --beat: var(--note);
   font-family: system-ui, sans-serif;
   color: #222;
   background: #fff;
@@ -18,27 +20,60 @@ main { padding: 24px; }
 .sheet { margin-bottom: 40px; break-after: page; }
 .sheet h2 { margin: 0 0 16px; font-size: 1.3rem; }
 .flute-key { color: #777; font-weight: normal; }
-/* The ♪ before the song's title: the song list sits invisibly over it, so clicking the ♪ opens it */
-.song-picker {
-  position: relative;
-  display: inline-block;
-  margin-right: 6px;
-  padding: 0 4px;
-  border-radius: 4px;
+/* The ♪ before the song's title, which opens the song list */
+.song-picker { position: relative; display: inline-block; margin-right: 6px; }
+.song-picker-button {
+  font: inherit;
   color: #777;
+  border: none;
+  border-radius: 4px;
+  padding: 0 4px;
+  background: transparent;
   cursor: pointer;
 }
-.song-picker:hover, .song-picker:focus-within { background: #eee; color: inherit; }
-.song-picker select {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-}
+.song-picker-button:hover, .song-picker-button[aria-expanded="true"] { background: #eee; color: inherit; }
 
-/* Bars of 3 or 4 beats (set from the song's time), wrapping onto new lines, with a bar line after each */
+/* The song list, and the second list beside a category with its songs */
+.song-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  min-width: 200px;
+  margin: 4px 0 0;
+  padding: 4px;
+  list-style: none;
+  font-size: 1rem;
+  font-weight: normal;
+  white-space: nowrap;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
+}
+.song-menu-category { position: relative; }
+.song-submenu { top: -5px; left: 100%; margin: 0 0 0 4px; }
+.song-menu-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 6px 10px;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+}
+.song-menu-item:hover, .song-menu-item.open { background: #eee; }
+/* The song showing now, and the category it's in */
+.song-menu-item.current { font-weight: 600; }
+.song-menu-arrow { color: #999; }
+.song-menu-divider { height: 1px; margin: 4px 6px; background: #ddd; }
+
+/* Bars of 3, 4 or 6 beats (set from the song's time), wrapping onto new lines, with a bar line after each */
 .bars { display: flex; flex-wrap: wrap; row-gap: 16px; }
 .bar {
   display: flex;
@@ -51,12 +86,12 @@ main { padding: 24px; }
 
 /* One note: as wide as the beats it lasts, but never too narrow for its flute (a half-beat note gets a full beat's room) */
 .beat-span { position: relative; display: flex; align-items: center; flex-shrink: 0; }
-.beat-span.starts-note { min-width: var(--beat); }
+.beat-span.starts-note { min-width: var(--note); }
 
 /* The gray block: white inside when the flute can play the note, empty when it can't */
 .note-block {
   flex-shrink: 0;
-  width: calc(var(--beat) - 8px);
+  width: calc(var(--note) - 8px);
   height: 196px;
   margin-right: 8px;
   box-sizing: border-box;
@@ -106,7 +141,7 @@ main { padding: 24px; }
 
 /* A rest: an empty space the width of its beats */
 .rest {
-  width: calc(var(--beat) - 8px);
+  width: calc(var(--note) - 8px);
   margin-right: 8px;
   text-align: center;
   color: #999;

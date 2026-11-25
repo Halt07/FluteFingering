@@ -1,0 +1,65 @@
+import type { Song } from "../../types";
+
+export const song: Song = {
+  title: "Jolly Old Saint Nicholas",
+  flutes: ["D4"],
+  time: 4,
+  transpose: 3,
+  notes: [
+    { note: "B4", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "A4", beats: 1 },
+
+    { note: "G4", beats: 0.5 },
+    { note: "G4", beats: 0.5 },
+    { note: "G4", beats: 0.5 },
+    { note: "G4", beats: 0.5 },
+    { note: "B4", beats: 2 },
+
+    { note: "E4", beats: 0.5 },
+    { note: "E4", beats: 0.5 },
+    { note: "E4", beats: 0.5 },
+    { note: "E4", beats: 0.5 },
+    { note: "D4", beats: 0.5 },
+    { note: "D4", beats: 0.5 },
+    { note: "G4", beats: 1 },
+
+    { note: "F#4", beats: 0.5 },
+    { note: "G4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "A4", beats: 2 },
+
+    { note: "B4", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "A4", beats: 1 },
+
+    { note: "G4", beats: 0.5 },
+    { note: "G4", beats: 0.5 },
+    { note: "G4", beats: 0.5 },
+    { note: "G4", beats: 0.5 },
+    { note: "B4", beats: 2 },
+
+    { note: "E4", beats: 0.5 },
+    { note: "E4", beats: 0.5 },
+    { note: "E4", beats: 0.5 },
+    { note: "E4", beats: 0.5 },
+    { note: "D4", beats: 0.5 },
+    { note: "D4", beats: 0.5 },
+    { note: "G4", beats: 1 },
+
+    { note: "A4", beats: 0.5 },
+    { note: "G4", beats: 0.5 },
+    { note: "A4", beats: 0.5 },
+    { note: "B4", beats: 0.5 },
+    { note: "G4", beats: 2 },
+  ],
+};

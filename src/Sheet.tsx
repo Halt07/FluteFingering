@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import type { Song } from "./types";
 
 /**
- * The whole tune for one flute: bars of 3 or 4 beats (the song's time), each note a flute drawing. A note longer than
+ * The whole tune for one flute: bars of 3, 4 or 6 beats (the song's time), each note a flute drawing. A note longer than
  * a beat is followed by a bar stretching across the beats it's held for, carried over the bar line
  * into the next bar if it's held that long.
  */

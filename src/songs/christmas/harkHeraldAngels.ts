@@ -1,4 +1,4 @@
-import type { Song } from "../types";
+import type { Song } from "../../types";
 
 export const song: Song = {
   title: "Hark the Herald Angels Sing",
