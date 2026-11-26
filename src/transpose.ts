@@ -1,7 +1,7 @@
 // Moving a whole song up or down, so it fits the flutes you have.
 
 import { pitch, SHARP_NAMES, transposeNote } from "./notes";
-import type { FluteKeys, Song } from "./types";
+import { NON_NOTES, type FluteKeys, type Song } from "./types";
 
 /** How many semitones the song is moved by: its `transpose` setting, as a number. */
 export function transposeBy(song: Song): number {
@@ -16,7 +16,7 @@ export function transposed(song: Song): Song {
   return {
     ...song,
     notes: song.notes.map((n) =>
-      n.note === "rest" ? n : { ...n, note: transposeNote(n.note, by), ...(n.alt && { alt: transposeNote(n.alt, by) }) },
+      NON_NOTES.includes(n.note)  ? n : { ...n, note: transposeNote(n.note, by), ...(n.alt && { alt: transposeNote(n.alt, by) }) },
     ),
   };
 }

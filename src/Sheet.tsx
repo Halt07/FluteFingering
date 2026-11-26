@@ -2,7 +2,7 @@ import { toBars, type BarNote } from "./bars";
 import FluteNote from "./FluteNote";
 import { equivalentFifths, transposeLabel } from "./transpose";
 import type { ReactNode } from "react";
-import type { FluteKeys, Song } from "./types";
+import { NON_NOTES, type FluteKeys, type Song } from "./types";
 
 /**
  * The whole tune for one flute: bars of 3, 4 or 6 beats (the song's time), each note a flute drawing. A note longer than
@@ -37,7 +37,7 @@ export default function Sheet({ song, flute, title = song.title }: { song: Song;
 
 /** One note's part of a bar: the flute (or "rest"), then a hold bar for any further beats. */
 function BeatSpan({ n, flute }: { n: BarNote; flute: string }) {
-  const rest = n.note === "rest";
+  const rest = NON_NOTES.includes(n.note);
   // Carried over from the last bar: no second flute, just the hold continuing (or more rest)
   if (n.tiedIn) {
     return rest ? null : <div className={`hold tied-in${n.tiedOut ? " tied-out" : ""} help`} title={`Keep holding ${n.note} from the last bar`} />;
@@ -45,7 +45,7 @@ function BeatSpan({ n, flute }: { n: BarNote; flute: string }) {
   return (
     <>
       {rest ? (
-        <div className="rest">rest</div>
+        <div className="rest">{n.note}</div>
       ) : (
         // A half-beat note on its own, not the start of a longer note cut off by the bar line
         <FluteNote note={n.note} alt={n.alt} flute={flute} trill={n.trill} half={n.beats === 0.5 && !n.tiedOut} />

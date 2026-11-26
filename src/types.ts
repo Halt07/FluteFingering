@@ -5,8 +5,12 @@ type Octave = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 export type FluteKeys = `${"A"|"B"|"C"|"D"|"E"|"F"|"G"}${Octave}`
 
+export const NON_NOTES = ["rest", "repeat"]
+
+export type Noteish = (typeof NON_NOTES)[number]
+
 /** A note name plus its octave ("A4", "Bb4", "C#5"), or "rest". */
-export type Note = `${NoteName}${Octave}` | "rest";
+export type Note = `${NoteName}${Octave}` | Noteish;
 
 /** One note of the tune: a note name ("A4", "Bb4", "C#5") or "rest", and how many beats it lasts. */
 export interface SongNote {
