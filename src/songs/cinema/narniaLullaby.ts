@@ -6,5 +6,11 @@ export const song: Song = {
   time: 4,
   transpose: 0,
   notes: [
+    { note:"D4", beats:1 },
+    { note:"D4", beats:1 },
+    { note:"E4", beats:2 },
+    { note:"D4", beats:1 },
+    { note:"D4", beats:1 },
+    { note:"E4", beats:2 },
   ]
 }
