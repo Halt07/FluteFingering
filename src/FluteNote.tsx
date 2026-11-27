@@ -12,14 +12,16 @@ export default function FluteNote({
   flute,
   trill = false,
   half = false,
+  quarter = false,
 }: {
   note: string;
   alt?: string;
   flute: string;
   trill?: boolean;
   half?: boolean;
+  quarter?: boolean;
 }) {
-  const block = `note-block${half ? " half" : ""}`;
+  const block = `note-block${half ? " half" : ""}${quarter ? " quarter" : ""}`;
   // The written note if this flute has it; otherwise the stand-in, if it has that
   const holes = fingeringFor(note, flute);
   const substitute = !holes && alt ? fingeringFor(alt, flute) : null;

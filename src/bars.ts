@@ -18,7 +18,7 @@ export function toBars(notes: readonly SongNote[], beatsPerBar: number): BarNote
   let bar: BarNote[] = [];
   let used = 0;
   for (const n of notes) {
-    if (!Number.isInteger(n.beats * 2) || n.beats < 0.5) {
+    if (!Number.isInteger(n.beats * 4) || n.beats < 0.25) {
       throw new Error(`"${n.note}" lasts ${n.beats} beats: use whole or half beats (0.5, 1, 1.5, 2, ...)`);
     }
     let left = n.beats;

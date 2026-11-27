@@ -101,6 +101,7 @@ main { padding: 24px; }
 }
 /* A half-beat (eighth) note: the gray only fills the bottom half of the block */
 .note-block.half { background: linear-gradient(to top, var(--block) 50%, transparent 50%); }
+.note-block.quarter { background: linear-gradient(to top, var(--block) 25%, transparent 25%); }
 .note-card {
   height: 100%;
   box-sizing: border-box;
