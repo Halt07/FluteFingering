@@ -2,7 +2,7 @@ import type { Song } from "../../types";
 
 export const song: Song = {
   title: "Silent Night",
-  flutes: ["A4","E4","D4"],
+  flutes: ["A4", "E4", "D4", "5A4"],
   time: 3,
   transpose: 5,
   notes: [

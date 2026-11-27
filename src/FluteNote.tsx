@@ -31,7 +31,7 @@ export default function FluteNote({
       <div className={block}>
         <div className="note-card substitute" title={title}>
           <div className="note-name">≈{alt}</div>
-          <FluteDrawing holes={substitute} trill={trill} label={`${alt}, in place of ${note}, on the ${flute} flute`} />
+          <FluteDrawing holes={substitute} trill={trill} five={flute[0] === "5"} label={`${alt}, in place of ${note}, on the ${flute} flute`} />
         </div>
       </div>
     );
@@ -43,7 +43,7 @@ export default function FluteNote({
     <div className={block}>
       <div className="note-card">
         <div className="note-name">{note}</div>
-        <FluteDrawing holes={holes} trill={trill} label={`${note}${trill ? " (trill)" : ""} on the ${flute} flute`} />
+        <FluteDrawing holes={holes} trill={trill} five={flute[0] === "5"} label={`${note}${trill ? " (trill)" : ""} on the ${flute} flute`} />
       </div>
     </div>
   );
@@ -59,7 +59,7 @@ const HALF_HOLE_HELP =
 // The flute, top to bottom: a body rounded at the top, and six holes in two groups of three
 const HOLE_Y = [40, 56, 72, 96, 112, 128];
 
-function FluteDrawing({ holes, trill, label }: { holes: Holes; trill: boolean; label: string }) {
+function FluteDrawing({ holes, trill, label, five }: { holes: Holes; trill: boolean; label: string; five: boolean }) {
   const covered = holes.map((c, i) => `hole ${i + 1} ${c ? "covered" : c === null ? "half covered" : "open"}`).join(", ");
   return (
     <svg className="flute" viewBox="0 0 40 142" role="img" aria-label={`${label}: ${covered}`}>
@@ -80,13 +80,13 @@ function FluteDrawing({ holes, trill, label }: { holes: Holes; trill: boolean; l
         </g>
       )}
       {holes.map((isCovered, i) =>
-        isCovered === null ? (
+        !(five && i === 0) ? ( isCovered === null ? (
           <circle key={i} cx={20} cy={HOLE_Y[i]} r={6} className="hole-variable help">
             <title>{HALF_HOLE_HELP}</title>
           </circle>
         ) : (
           <circle key={i} cx={20} cy={HOLE_Y[i]} r={6} className={isCovered ? "hole-covered" : "hole-open"} />
-        ),
+        )) : null,
       )}
     </svg>
   );

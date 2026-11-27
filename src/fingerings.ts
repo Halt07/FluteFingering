@@ -41,7 +41,32 @@ export const FINGERINGS: Readonly<Record<number, Holes>> = {
   15: [O, O, X,  X, O, O], // minor tenth
 };
 
+/** The fingering chart, by semitones above the flute's key. */
+export const FIVE_FINGERINGS: Readonly<Record<number, Holes>> = {
+  0:  [X, X, X,  X, X, X], // the key note (root)
+  1:  [X, X, X,  X, X, V], // minor Second
+  2:  [X, X, X,  X, X, V], // major Second
+  3:  [X, X, X,  X, X, O], // minor third
+  4:  [X, X, X,  X, O, X], // major third
+  5:  [X, X, X,  X, O, O], // fourth
+  6:  [X, X, X,  O, X, O], // Augmented fourth/Flat Five
+  7:  [X, X, X,  O, O, O], // fifth
+  8:  [X, O, X,  X, O, O], // minor sixth
+  9:  [X, X, O,  X, O, O], // major sixth
+  10: [X, O, X,  O, O, O], // minor seventh
+  11: [X, O, O,  X, O, O], // major seventh
+  12: [X, V, O,  O, O, O], // octave
+  13: [X, V, X,  X, X, X], // minor ninth
+  14: [X, O, X,  X, X, X], // major ninth
+  15: [X, O, O,  X, X, O], // minor tenth
+};
+
 /** The fingering for `note` on a flute in `key`, or null if that flute can't play it. */
 export function fingeringFor(note: string, key: string): Holes | null {
-  return FINGERINGS[semitonesAbove(note, key)] ?? null;
+  switch(key[0]){
+    case "5":
+      return FIVE_FINGERINGS[semitonesAbove(note, key.slice(1))] ?? null;
+    default:    
+      return FINGERINGS[semitonesAbove(note, key)] ?? null;
+  }
 }

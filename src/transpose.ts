@@ -31,5 +31,5 @@ export function transposeLabel(song: Song): string {
 export function equivalentFifths(fluteKey: FluteKeys): string{
   const nextFifth = (SHARP_NAMES.indexOf(fluteKey.slice(0,-1) as (typeof SHARP_NAMES)[number])+5)
   const newOctave = (nextFifth > 12 ? parseInt(fluteKey[fluteKey.length -1]) + 1 : fluteKey[fluteKey.length -1])
-  return `${fluteKey} / ${SHARP_NAMES[ nextFifth % 12]}${newOctave}`
+  return `${fluteKey[0] === "5" ? `5 hole ${fluteKey.slice(1)}` : fluteKey} / ${SHARP_NAMES[ nextFifth % 12]}${newOctave}`
 }

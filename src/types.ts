@@ -3,7 +3,7 @@ import type { FLAT_NAMES, SHARP_NAMES } from "./notes";
 type NoteName = (typeof SHARP_NAMES)[number] | (typeof FLAT_NAMES)[number];
 type Octave = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
-export type FluteKeys = `${"A"|"B"|"C"|"D"|"E"|"F"|"G"}${Octave}`
+export type FluteKeys = `${"5"|""}${"A"|"B"|"C"|"D"|"E"|"F"|"G"}${Octave}`
 
 export const NON_NOTES = ["rest", "repeat"]
 
